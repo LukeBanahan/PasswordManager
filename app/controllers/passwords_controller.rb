@@ -25,20 +25,29 @@ class PasswordsController < ApplicationController
   def edit
   end
 
-  # POST /passwords or /passwords.json
-  def create
-    @password = current_user.passwords.new(password_params)
+# POST /passwords or /passwords.json
+def create
+  @password = current_user.passwords.new(password_params)
 
-    respond_to do |format|
-      if @password.save
-        format.html { redirect_to password_url(@password), notice: "Password was successfully created." }
-        format.json { render :show, status: :created, location: @password }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @password.errors, status: :unprocessable_entity }
-      end
+
+  if password_params[:password].blank?
+    generated_password = PasswordGeneratorService.generate_strong_password
+    password_params[:password] = generated_password
+    @password.password = generated_password
+  end
+
+
+
+  respond_to do |format|
+    if @password.save
+      format.html { redirect_to password_url(@password), notice: "Password was successfully created." }
+      format.json { render :show, status: :created, location: @password }
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @password.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # PATCH/PUT /passwords/1 or /passwords/1.json
   def update
@@ -63,10 +72,6 @@ class PasswordsController < ApplicationController
     end
   end
 
-  def generate_password
-    @password = PasswordGeneratorService.generate_strong_password
-    render json: @password
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
