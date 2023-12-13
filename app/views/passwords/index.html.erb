@@ -2,6 +2,7 @@
 
 <h1>Passwords</h1>
 
+
 <div id="passwords">
   <% @passwords.each do |password| %>
     <%= render password %>
@@ -11,4 +12,3 @@
   <% end %>
 </div>
 
-<%= link_to "New password", new_password_path %>

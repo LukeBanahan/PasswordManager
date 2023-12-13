@@ -13,10 +13,3 @@
  *= require_tree .
  = require_self
  */
- 
- .hidden-password {
-    color: #ccc; /* or any color you prefer */
-    font-style: italic;
-  }
-
-
