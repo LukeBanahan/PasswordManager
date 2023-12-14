@@ -1,0 +1,2 @@
+class CreatePasswordWorkflowTest < ActionDispatch::IntegrationTest
+end

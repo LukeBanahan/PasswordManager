@@ -1,5 +1,6 @@
-<h1>New password</h1>
-
+<%= stylesheet_link_tag 'passwords', media: 'all' %>
+<h1 class=header>New password</h1>
+<h2 class=header>Leave password blank to generate random strong password.</h2>
 <%= render "form", password: @password %>
 
 <br>
