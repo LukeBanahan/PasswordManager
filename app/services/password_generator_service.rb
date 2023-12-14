@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class PasswordGeneratorService
-    require 'securerandom'
+  require 'securerandom'
 
 
-        def self.generate_strong_password
-            password = SecureRandom.base64(15)
-        end
-    end
-
-   
+  def self.generate_strong_password
+    SecureRandom.base64(15)
+  end
+end
